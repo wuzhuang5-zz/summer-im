@@ -8,18 +8,18 @@ public interface UserInfoCacheService {
      * @param userId
      * @return
      */
-    UserInfo getUserInfoByUserId(long userId);
+    UserInfo getUserInfoByUserId(Long userId);
 
     /**
      * 保存和检查用户登录情况
      * @param userId
      * @return
      */
-    boolean saveAndCheckLoginStatus(long userId);
+    boolean saveAndCheckLoginStatus(Long userId);
 
     /**
      * 清除用户登录状态
      * @param userId
      */
-    void removeLoginStatus(long userId);
+    void removeLoginStatus(Long userId);
 }

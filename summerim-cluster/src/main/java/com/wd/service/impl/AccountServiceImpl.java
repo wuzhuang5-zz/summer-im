@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import static com.wd.constant.Constant.ACCOUNT_PREFIX;
+/**
+ * @author wz
+ */
 @Service
 public class AccountServiceImpl implements AccountService {
     private final static Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class);
