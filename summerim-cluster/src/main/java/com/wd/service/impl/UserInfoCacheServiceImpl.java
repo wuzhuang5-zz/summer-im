@@ -40,7 +40,11 @@ public class UserInfoCacheServiceImpl implements UserInfoCacheService {
     @Override
     public boolean saveAndCheckLoginStatus(Long userId) {
         Long add = redisTemplate.opsForSet().add(LOGIN_STATUS_PREFIX, userId.toString());
-        return false;
+        if(add == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override

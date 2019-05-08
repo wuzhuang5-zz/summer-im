@@ -5,7 +5,9 @@ public enum StatusEnum {
     /**
      * 登录信息不匹配
      */
-    ACCOUNT_NOT_MATCH("9100", "账号信息不匹配");
+    ACCOUNT_NOT_MATCH("9100", "账号信息不匹配"),
+
+    REPEAT_LOGIN("5000", "重复登录");
     /**
      * 枚举值码
      */

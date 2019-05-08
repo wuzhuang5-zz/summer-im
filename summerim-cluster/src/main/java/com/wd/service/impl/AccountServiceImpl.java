@@ -3,6 +3,7 @@ package com.wd.service.impl;
 import com.wd.constant.Constant;
 import com.wd.enums.StatusEnum;
 import com.wd.service.AccountService;
+import com.wd.service.UserInfoCacheService;
 import com.wd.vo.req.LoginReqVo;
 import com.wd.vo.res.RegisterInfoResVo;
 import org.slf4j.Logger;
@@ -20,6 +21,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
+
+    @Autowired
+    private UserInfoCacheService userInfoCacheService;
 
     @Override
     public RegisterInfoResVo register(RegisterInfoResVo info) throws Exception {
@@ -46,7 +50,10 @@ public class AccountServiceImpl implements AccountService {
         if(!userName.equals(loginReqVo.getUserName())) {
             return StatusEnum.ACCOUNT_NOT_MATCH;
         }
-
-        return null;
+        Boolean loginStatus = userInfoCacheService.saveAndCheckLoginStatus(loginReqVo.getUserId());
+        if(loginStatus == false) {
+            return StatusEnum.REPEAT_LOGIN;
+        }
+        return StatusEnum.SUCCESS;
     }
 }
